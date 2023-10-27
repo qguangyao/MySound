@@ -1,0 +1,227 @@
+major:D#
+PPQ:4/4
+BPM:100
+rightStart
+//1
+0 0 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+h6+++
+//5
+0 0 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+h6+++
+//9
+0 0 -h3 -h5 -h6 -hh3
+hh2. -hh3 -hh2 -hh3 -hh2 -hh1
+hh2+ -hh2 -hh3 -hh5 -hh3
+h5. -h3 -h5 -h3 -h5 -hh2
+//13
+hh1+ -6 -7 -h1 -h3
+h6. -hh3 -hh3 -hh2 -hh3 -hh2
+h7+ -hh2 -hh1 -h7 -hh1
+h6+++
+//17
+0 0 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+h6+++
+//21
+h1 7 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+h6+++
+//25
+h1 7 -h3 -h5 -h6 -hh3
+hh2. -hh3 -hh2 -hh3 -hh2 -hh1
+hh2+ -hh2 -hh3 -hh5 -hh3
+h5. -h3 -h5 -h3 -h5 -hh2
+//29
+hh1+ -h1 -h2 -h3 -h6
+h6. -hh3 -hh3:-h6 -hh2 -hh3 -hh2
+h7+ -hh2 -hh1 -h7 -hh1
+h6+++
+//33
+h1 7 -hh1:-h5 -hh2:-h6 -hh3:-h7 -hh6:-hh1
+hh6+:hh1+ -hh1:-h5 -hh2:-h6 -hh3:-h7 -hh6:-hh1
+hh6+:hh1+ -hh1:-h5 -hh2:-h6 -hh3:-h7 -hhh1:-hh3
+hh6+:hh1+++
+//37
+h1 7 -h1 -h2 -h3 -h6:-h1
+h6+:h1+ -h1 -h2 -h3 -h6:-h1
+h6+:h1+ -hh3:-h6 -hh2 -hh3 -hh5
+hh3+++:h5+++
+//41
+h2 h3 -6 -h7 -hh1 -hh3
+hh5<hh6. -hh3 -hh3:-h6 -hh2 -hh3 -hh5
+hh2+:hh5+ -hh2 -hh3 -hh5 -hh3
+h5. -h3 -h5 -h3 -h5 -hh2
+//45
+hh1+ -h1 -h2 -h3 -h6
+h6. -hh3 -hh3:-h6 -hh2 -hh3 -hh2
+h7+ -hh2:-h5 -hh1 -h7 -hh1
+h6+++
+//49
+h1 7 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+-hh1^ -h6 ^6h++
+//53
+h1 7 -6 -7 -h1 -h3
+h6+ -6 -7 -h1 -h3
+h6+ -hh2 -hh1 -h7 -hh1
+-hh1^ -h6 ^6h++
+//56
+h1 7 -h3 -h5 -h6 -hh3
+hh2. -hh3:-h6 -hh2 -hh3 -hh2 -hh1
+hh2+:h5+ -hh2 -hh3 -hh5 -hh3
+h5. -h3 -h5 -h3 -h5 -hh2
+//60
+hh1+ -h1 -h2 -h3 -h6:-h1
+h6.:h1. -hh3:-h6 -hh3:-h6 -hh2 -hh3 -hh2
+h7+ -hh2 -hh1 -h7 -hh1
+-hh1^ -h6 ^h6++
+//64
+h1 7 -hh1:-h5 -hh2:-h6 -hh3:-h7 -hh6:-hh1
+hh6+:hh1+ -hh1:-h5 -hh2:-h6 -hh3:-h7 -hh6:-hh1
+hh6+:hh1+ -hh1:-h5 -hh2:-h6 -hh3:-h7 -hhh1:-hh4
+-hhh1^:-hh4^ -hh6:-h7 hh6^++:h7^++
+//68
+h1 7 -h1 -h2 -h3 -h6:-h1
+h6+:h1+ -h1 -h2 -h3 -h6:-h1
+h6+:h1+ -hh3:-h6 -hh2 -hh3 -hh5:-hh1
+-hh5^:-hh1^ -hh3:-h5 ^hh3++:^h5++
+//72
+h2 h3 -6 -7 -h1 -h3
+-h5<h6. -hh3:-h6 -hh3:-h6 -hh2 -hh3 -hh5:-h7
+-hh5^:-h7^ hh2. -hh2 -hh3 -hh5 -hh3
+h5. -h3 -h5 -h3 -h5 -hh2
+//76
+-hh2^ hh1. -h1 -h2 -h3 -h6:-h1
+.h6:.h1 -hh3:-h6 -hh3:-h6 -hh2 -hh3 -hh2
+h7+ -hh2:-h5 -hh1 -h7 -hh1
+-hh1^ -h6 ^h6++
+//80
+h1 7 -h1 -h2 -h3 -h6:-h1
+.h6:.h1 -hh3:-h6 -hh3:-h6 -hh2 -hh3 -hh2
+h7+ hh2.:h5. -hh1
+h6+++
+//84
+h1 7 -5 -3 -2 -3
+l6++ -l4 -l6
+l7 h1:1 h2:2 h3:3
+-hh6 -hhh5 -hh2 -h6 0 0
+rightEnd
+leftStart
+//1
+0 0 0 0
+-ll4 -l1 -l5 -l6 1+
+-ll5 -l2 -l6 -l7 2+
+-ll6 -l3 -l7 -1 3+
+//5
+-ll6 -l3 -l7 -1 3+
+-ll4 -l1 -l5 -l6 1+
+-ll5 -l2 -l6 -l7 2+
+-ll6 -l3 -l7 -1 3+
+//9
+-ll6 -l3 -l7 -1 3+
+-ll4 -l1 -l5 -l6 1+
+-ll5 -l2 -l5 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//13
+-ll6 -l3 -l5 -l6 1+
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2+
+-ll6 -l3 -l7 -1 3+
+//17
+-ll6 -l3 -l5 -l6 1+
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//21
+-ll6 -l3 -l5 -l6 1+
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//25
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l6 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//29
+-ll6 -l3 -l5 -l6 1 l4
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//33
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l6 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//37
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-l1 -l5 -2 -3 -5 -3 -1 -3
+//41
+-l1 -l5 -2 -l5 -1 -l5 1
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l6 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//45
+-ll6 -l3 -l5 -l6 1 l4
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 3 1
+//49
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//53
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//56
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//60
+-ll6 -l3 -l5 -l6 1 l4
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//64
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//68
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-l1 -l5 -2 -3 -5 -3 -1 -3
+//72
+-l1 -l5 -2 -l5 -1 -l5 7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 -2 -l7 l5
+-ll3 -ll7 -l3 -l5 l7 l3
+//76
+-ll6 -l3 -l5 -l6 1 l4
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2 l7
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//80
+-ll6 -l3 -l7 -1 ^1 l7
+-ll4 -l1 -l5 -l6 1 l4
+-ll5 -l2 -l5 -l7 2+
+-ll6 -l3 -l7 -1 -3 -l7 -1 -3
+//84
+-ll5 -l3 -l5 -l3 l3^+
+-ll4 -l1 -l5 -l6 1 0
+ll5 -l5 -l2 -l7 -l2 l2
+6<l6+++
+leftEnd

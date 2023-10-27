@@ -1,0 +1,41 @@
+major:c
+PPQ:4/4
+BPM:155
+rightStart
+//1
+-h5u -h1u -h5u -h1u -h5u -h1u -h5u -h1u
+-h5u -h1u -h5u -h1u -h5u -h1u -h5u -h1u
+-h5u -h1u -h5u -h1u -h5u -h1u -h5u -h1u
+-h5u -h1u -h5u -h1u -h5u -h1u -h5u -h1u
+//5
+h3+++
+h4u+ h7. --h3 --h4u
+h5u+ -0 -hh3:-h3 -hh4u:-h4u -hh5u:-h5u
+//8
+-hh6:-h6 -0 -0 h5u. h4u
+h3+++
+h4u+ h7. -h3
+//11
+h5u+ -0 -h3 -h4u -h5u
+-h6 -0 -0 h5u. h4u
+-h3 --hh1u --hh1u -hh1u --hh1u --hh1u -hh1u --h7 --h7 -h7 -hh1u
+//14
+rightEnd
+leftStart
+-l5u:-l1u:-ll5u:-ll1u -l5u:-l1u:-ll5u:-ll1u -0 -l7:-l4u:-ll7:-ll4u:-lll7 -0 -l7:-l4u:-ll7:-ll4u:-lll7 -0 -l6:-l3:-ll6-ll3:-lll6
+-0 -l6:-l3:-ll6-ll3:-lll6 -0 -l7:-l4u:-ll7:-ll4u:-lll7 l7:l4u:ll7:ll4u:lll7 0
+-l5u:-l1u:-ll5u:-ll1u -l5u:-l1u:-ll5u:-ll1u -0 -l7:-l4u:-ll7:-ll4u:-lll7 -0 -l7:-l4u:-ll7:-ll4u:-lll7 -0 -l6:-l3:-ll6-ll3:-lll6
+-0 -l6:-l3:-ll6-ll3:-lll6 -0 -l7:-l4u:-ll7:-ll4u:-lll7 l7:l4u:ll7:ll4u:lll7 0
+//5
+-l5u:-l1u -l5u:-l1u -l5u:-l1u -l5u:-l1u -l5u:-l1u -l5u:-l1u -l5u:-l1u -l5u:-l1u
+-l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7
+-l3:-ll6 -l3:-ll6 -l3:-ll6 -l3:-ll6 -l3:-ll6 -l3:-ll6 -l3:-ll6 -l3:-ll6
+//8
+-l3b:-ll6b -l3b:-ll6b -l3b:-ll6b l5u. l3b:ll6b
+-l5u:-ll1u -l5u:-ll1u -l5u:-ll1u -l5u:-ll1u -l5u:-ll1u -l5u:-ll1u -l5u:-ll1u -l5u:-ll1u
+-l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7 -l4u:-ll7
+//11
+-ll7:-ll3 -ll7:-ll3 -ll7:-ll3 -ll7:-ll3 -ll7:-ll3 -ll7:-ll3 -ll7:-ll3 -ll7:-ll3
+l3.:ll6. 0 0 -l1u:-ll4u
+l1u:ll4u -ll4 -l1:-ll4 -0 -ll4 l1:l4
+leftEnd
