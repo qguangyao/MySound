@@ -2,6 +2,7 @@ package org.file;
 
 import org.note.MyNoteIMPL;
 import org.note.NoteInfo;
+import org.resolver.AppoggiaturaResolverIMPL;
 import org.resolver.SingleNoteResolver;
 import org.resolver.SingleNoteResolverIMPL;
 
@@ -15,6 +16,7 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
     private Sequence sequence;
     private Track track;
     private SingleNoteResolver singleNoteResolver = new SingleNoteResolverIMPL();
+    private AppoggiaturaResolverIMPL appoggiaturaResolverIMPL = new AppoggiaturaResolverIMPL();
     private static final String COLON = ":";
     private static SEPARATOR separator = SEPARATOR.SPACE;
 
@@ -108,21 +110,17 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
             for (int k = 0; k < singleNotes.length; k++) {
                 if (singleNotes[k].contains("<")) {
                     String[] split = singleNotes[k].split("<");
-                    NoteInfo noteInfo0 = singleNoteResolver.singleNoteResolve(myNoteIMPL,split[0], noteStart);
-                    NoteInfo noteInfo1 = singleNoteResolver.singleNoteResolve(myNoteIMPL,split[1], noteStart);
-                    NoteInfo[] noteInfos = appoggiatura(noteInfo0, noteInfo1);
+                    NoteInfo[] noteInfos = appoggiaturaResolverIMPL.appoggiatura(split[0], split[1], noteStart, myNoteIMPL, singleNoteResolver);
                     if (noteTick < noteInfos[0].noteTick + noteInfos[1].noteTick)
                         noteTick = noteInfos[0].noteTick + noteInfos[1].noteTick;
                     try {
-                        addNote(track, ShortMessage.NOTE_ON, noteInfos[0].note, noteInfos[0].volume, myNoteIMPL.getChannel(), noteInfos[0].originTick);
-                        addNote(track, ShortMessage.NOTE_OFF, noteInfos[0].note, noteInfos[0].volume, myNoteIMPL.getChannel(), noteInfos[0].originTick + noteInfos[0].muteTick);
-                        addNote(track, ShortMessage.NOTE_ON, noteInfos[1].note, noteInfos[1].volume, myNoteIMPL.getChannel(), noteInfos[1].originTick + noteInfo0.noteTick);
-                        addNote(track, ShortMessage.NOTE_OFF, noteInfos[1].note, noteInfos[1].volume, myNoteIMPL.getChannel(), noteInfos[1].originTick + noteInfos[1].muteTick);
+                        addNote(track, noteInfos[0].note, noteInfos[0].volume, myNoteIMPL.getChannel(), noteInfos[0].originTick, noteInfos[0].originTick + noteInfos[0].muteTick);
+                        addNote(track, noteInfos[1].note, noteInfos[1].volume, myNoteIMPL.getChannel(), noteInfos[1].originTick, noteInfos[0].originTick + noteInfos[1].muteTick);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    NoteInfo noteInfo = singleNoteResolver.singleNoteResolve(myNoteIMPL,singleNotes[k], noteStart);
+                    NoteInfo noteInfo = singleNoteResolver.singleNoteResolve(myNoteIMPL, singleNotes[k], noteStart);
                     if (noteInfo == null) {
                         continue;
                     }
@@ -130,9 +128,9 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                         noteTick = noteInfo.noteTick;
                     }
                     try {
-                        addNote(track, ShortMessage.NOTE_ON, noteInfo.note, noteInfo.volume, myNoteIMPL.getChannel(), noteInfo.originTick);
-                        addNote(track, ShortMessage.NOTE_OFF, noteInfo.note, noteInfo.volume, myNoteIMPL.getChannel(), noteInfo.originTick + noteInfo.muteTick);
+                        addNote(track, noteInfo.note, noteInfo.volume, myNoteIMPL.getChannel(), noteInfo.originTick, noteInfo.originTick + noteInfo.muteTick);
                     } catch (Exception e) {
+                        System.out.println("异常:"+lineNum);
                         throw new RuntimeException(e);
                     }
                 }
@@ -146,25 +144,23 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
         return lineTick;
     }
 
-    private NoteInfo[] appoggiatura(NoteInfo info1, NoteInfo info2) {
-        info1.noteTick = myNoteIMPL.getBaseTick() / 16;
-        info2.noteTick = info2.noteTick - info1.noteTick;
-        return new NoteInfo[]{info1, info2};
-    }
 
-    public int addNote(Track track, int command, int note, int volume, int channel, int tick) throws Exception {
-        ShortMessage shortMessage = new ShortMessage();
-        shortMessage.setMessage(command, channel, note, volume);
-        MidiEvent noteOn = new MidiEvent(shortMessage, tick);
-        track.add(noteOn);
-        if (shortMessage.getCommand() == ShortMessage.NOTE_ON) {
-            MetaMessage metaMessage = new MetaMessage();
-            byte[] data = String.valueOf(shortMessage.getData1() + " " + tick).getBytes();
-            metaMessage.setMessage(127, data, data.length);
-            MidiEvent midiEvent = new MidiEvent(metaMessage, tick);
-            track.add(midiEvent);
-        }
-        return tick;
+    public void addNote(Track track, int note, int volume, int channel, int tick, int endTick) throws Exception {
+        ShortMessage messageOn = new ShortMessage();
+        messageOn.setMessage(ShortMessage.NOTE_ON, channel, note, volume);
+        MidiEvent eventOn = new MidiEvent(messageOn, tick);
+        track.add(eventOn);
+        //
+        MetaMessage metaMessage = new MetaMessage();
+        byte[] data = String.valueOf(messageOn.getData1() + " " + tick).getBytes();
+        metaMessage.setMessage(127, data, data.length);
+        MidiEvent midiEvent = new MidiEvent(metaMessage, tick);
+        track.add(midiEvent);
+        //
+        ShortMessage messageOff = new ShortMessage();
+        messageOff.setMessage(ShortMessage.NOTE_OFF, channel, note, volume);
+        MidiEvent eventOff = new MidiEvent(messageOff, endTick);
+        track.add(eventOff);
     }
 
     public MyNoteIMPL getMyNoteIMPL() {

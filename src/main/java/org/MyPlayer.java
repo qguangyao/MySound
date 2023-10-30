@@ -105,9 +105,11 @@ public class MyPlayer implements MetaEventListener {
 //       p.setFile("菊次郎的夏天.txt");
 //       p.setFile("My Soul.txt");
 //       p.setFile("悬溺.txt");
-//        p.setFile("动天.txt");
-        p.setFile("夜的钢琴曲五.txt");
+//        p.setFile("动天.txt");//不好听
+//        p.setFile("夜的钢琴曲五.txt");
+//        p.setFile("生日快乐歌.txt");//不好听
+        p.setFile("komorebi.txt");
         p.play();
     }
-    
+
 }
