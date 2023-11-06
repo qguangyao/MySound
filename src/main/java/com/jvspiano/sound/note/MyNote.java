@@ -1,5 +1,8 @@
-package org.note;
+package com.jvspiano.sound.note;
 
+/**
+ * 音符映射
+ */
 public interface MyNote {
     enum Major {
         A(57), AUp(58), B(59), C(60), CUp(61), D(62),

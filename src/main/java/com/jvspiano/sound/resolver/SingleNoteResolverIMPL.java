@@ -1,11 +1,23 @@
-package org.resolver;
+package com.jvspiano.sound.resolver;
 
-import org.note.MyNoteIMPL;
-import org.note.NoteInfo;
 
-public class SingleNoteResolverIMPL implements SingleNoteResolver{
+import com.jvspiano.sound.note.MyNoteIMPL;
+import com.jvspiano.sound.note.NoteInfo;
+
+/**
+ * 单个音符解析
+ */
+public class SingleNoteResolverIMPL implements SingleNoteResolver {
+
+    /**
+     * 打哪个音符解析
+     * @param myNoteIMPL 音符映射类
+     * @param noteString 从file文件里读来的音符
+     * @param originTick 音符的开始时刻,相对于整首曲子
+     * @return
+     */
     @Override
-    public NoteInfo singleNoteResolve(MyNoteIMPL myNoteIMPL ,String noteString, int originTick) {
+    public NoteInfo singleNoteResolve(MyNoteIMPL myNoteIMPL , String noteString, int originTick) {
         NoteInfo noteInfo = new NoteInfo();
         noteInfo.originTick = originTick;
         if (noteString == null || noteString.isEmpty()) {

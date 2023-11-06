@@ -1,14 +1,17 @@
-package org;
+package com.jvspiano.sound;
 
 
-import org.note.MyNote;
-import org.note.MyNoteIMPL;
+import com.jvspiano.sound.note.MyNote;
+import com.jvspiano.sound.note.MyNoteIMPL;
 
 import javax.sound.midi.*;
-import java.awt.*;
 
+
+/**
+ * 教学用视频中用的类
+ */
 public class Teach {
-    public static void main1(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         //https://www.oracle.com/java/technologies/java-sound-demo.html
         //4613、572、3572、613
         int scale = 8;
@@ -23,6 +26,15 @@ public class Teach {
         Sequence sequence = new Sequence(Sequence.PPQ, 4 * scale);
         player.setSequence(sequence);
         Track track = sequence.createTrack();
+//        try {
+//            ShortMessage shortMessage = new ShortMessage();
+//            shortMessage.setMessage(ShortMessage.PROGRAM_CHANGE,6,40,0);
+//            MidiEvent event = new MidiEvent(shortMessage,0);
+//            track.add(event);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 //        for (int i = 0; i < 10; i++) {
 //            addNote(track, 6, 60 + i, 100, i * (beat / 2), 4, i * (beat / 2) + 1);
 //        }
@@ -74,7 +86,7 @@ public class Teach {
         //第七小节
     }
 
-    public static void left( Track track,int channel,MyNoteIMPL myNoteIMPL,int volume,int tick,int beat,int length) throws Exception{
+    public static void left(Track track, int channel, MyNoteIMPL myNoteIMPL, int volume, int tick, int beat, int length) throws Exception{
         tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
         tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
         tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
@@ -167,8 +179,56 @@ public class Teach {
         return length;
     }
 
-    public static void main(String[] args) throws Exception{
-        Robot robot = new Robot();
+
+    public static void main1(String[] args) throws Exception{
+        System.out.println("hello world");
+        Sequencer sequencer = MidiSystem.getSequencer();
+        sequencer.setTempoInBPM(90);
+        Sequence sequence = new Sequence(Sequence.PPQ, 4 );
+        sequencer.setSequence(sequence);
+        Track track = sequence.createTrack();
+        //右手部分
+        addNote(track,0,60);
+        addNote(track,4,60);
+        addNote(track,8,67);
+        addNote(track,12,67);
+        addNote(track,16,69);
+        addNote(track,20,69);
+        addNote(track,24,67);
+        addNote(track,32,65);
+        addNote(track,36,65);
+        addNote(track,40,64);
+        addNote(track,44,64);
+        addNote(track,48,62);
+        addNote(track,52,62);
+        addNote(track,56,60);
+        //此行防止最后一个音不完整,拉长播放时间用
+        addNote(track,70,0);
+        //左手部分
+        addNote(track,0,48);
+        addNote(track,4,48);
+        addNote(track,8,48);
+        addNote(track,12,48);
+        addNote(track,16,53);
+        addNote(track,20,53);
+        addNote(track,24,48);
+        addNote(track,28,48);
+        addNote(track,32,43);
+        addNote(track,36,43);
+        addNote(track,32,48);
+        addNote(track,36,48);
+        addNote(track,40,43);
+        addNote(track,44,43);
+        addNote(track,48,48);
+        addNote(track,52,48);
+        sequencer.open();
+        Thread.sleep(100);
+        sequencer.start();
+    }
+    private static void addNote(Track track,int tick,int data1) throws Exception{
+        ShortMessage shortMessage = new ShortMessage(ShortMessage.NOTE_ON,0,data1,100);
+        MidiEvent midiEvent = new MidiEvent(shortMessage,tick);
+        track.add(midiEvent);
     }
 
 }

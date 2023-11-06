@@ -1,14 +1,37 @@
-package org.note;
+package com.jvspiano.sound.note;
 
+/**
+ * 音符映射实现类
+ */
 public class MyNoteIMPL implements MyNote {
 
+    /**
+     * 相对于简谱的主调
+     */
     private Major major;
+    /**
+     * 一个节拍里面有几个tick
+     */
     private String ppq;
+    /**
+     * 曲谱速度,beat per minute
+     */
     private int bpm;
-    private int channel = 6;//钢琴
+    /**
+     * 播放频道
+     */
+    private int channel = 6;
+    /**
+     * 音符之间的分隔符
+     */
     private String explan;
-
+    /**
+     * 右手tick标记
+     */
     private boolean rightStart;
+    /**
+     * 左手tick标记
+     */
     private boolean leftStart;
 
     private final int baseTick = 32;

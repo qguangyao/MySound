@@ -1,8 +1,14 @@
-package org.file;
+package com.jvspiano.sound.file;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
-public class MyFileReaderTxt implements MyFIleReader{
+/**
+ * 读取txt文件定义
+ */
+public class MyFileReaderTxt implements MyFIleReader {
     @Override
     public RandomAccessFile Read(String path) {
         File file = null;

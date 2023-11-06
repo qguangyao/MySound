@@ -1,7 +1,10 @@
-package org.file;
+package com.jvspiano.sound.file;
 
 import java.io.RandomAccessFile;
 
+/**
+ * 行解析并分发给相应的解析行为接口定义
+ */
 public interface MyStringDistributer {
     enum Type {
         MAJOR("major"),

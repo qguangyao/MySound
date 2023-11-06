@@ -1,9 +1,21 @@
-package org.resolver;
+package com.jvspiano.sound.resolver;
 
-import org.note.MyNoteIMPL;
-import org.note.NoteInfo;
+import com.jvspiano.sound.note.MyNoteIMPL;
+import com.jvspiano.sound.note.NoteInfo;
 
+/**
+ * 钢琴技法,倚音实现类
+ */
 public class AppoggiaturaResolverIMPL implements AppoggiaturaResolver {
+    /**
+     * 钢琴技法,倚音的实现,此处定义倚音为一前一后(在音乐领域不一定是这样的,没研究过)
+     * @param noteFrontString 倚音前边音符
+     * @param noteAfterString 倚音后边音符
+     * @param noteStart 音符开始的时间,相对于整首曲子
+     * @param myNoteIMPL 音符映射类
+     * @param singleNoteResolver 单个音符解析器
+     * @return 音符信息的数组
+     */
     @Override
     public NoteInfo[] appoggiatura(String noteFrontString, String noteAfterString, int noteStart, MyNoteIMPL myNoteIMPL, SingleNoteResolver singleNoteResolver) {
         NoteInfo noteInfo0 = singleNoteResolver.singleNoteResolve(myNoteIMPL, noteFrontString, noteStart);
