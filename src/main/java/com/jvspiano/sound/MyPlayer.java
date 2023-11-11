@@ -121,6 +121,7 @@ public class MyPlayer implements MetaEventListener {
         RandomAccessFile read = mf.Read(file);
         md.distribute(read);
         player.setTempoInBPM(md.getMyNoteIMPL().getBpm());
+
         player.open();
         Thread.sleep(200);
         if (reserve){
@@ -174,6 +175,7 @@ public class MyPlayer implements MetaEventListener {
 //        }
         MyPlayer p = new MyPlayer();
         p.setReserve(false);//写true就倒放,好玩捏
+//        p.setInstrument(40,1);
 //       p.setFile("起风了.txt");
 //       p.setFile("Tassel.txt");
 //       p.setFile("菊次郎的夏天.txt");
@@ -183,8 +185,10 @@ public class MyPlayer implements MetaEventListener {
 //        p.setFile("夜的钢琴曲五.txt");
 //        p.setFile("生日快乐歌.txt");//不好听
 //        p.setFile("komorebi.txt");
+//        p.setFile("告白之夜.txt");
         p.play();
 
     }
+
 
 }

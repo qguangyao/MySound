@@ -20,7 +20,13 @@ public class MyNoteIMPL implements MyNote {
     /**
      * 播放频道
      */
-    private int channel = 6;
+    private int channel = 0;
+    /**
+     * 乐器，2电钢琴，40小提琴
+     */
+    private int instrument = InstrumentEnum.ACOUSTIC_GRAND_PIANO.value;
+//    private int instrument = InstrumentEnum.ELECTRIC_GRAND_PIANO.value;
+//    private int instrument = InstrumentEnum.VIOLIN.value;
     /**
      * 音符之间的分隔符
      */
@@ -38,10 +44,18 @@ public class MyNoteIMPL implements MyNote {
     /**
      * 每个小节的长度
      */
-    private int barTick = baseTick * 4;
+    private int barTick = baseTick;
     private OnMajorChangedListener majorChangedListener;
     private OnPPQChangedListener ppqChangedListener;
     private OnBPMChangedListener bpmChangedListener;
+
+    public int getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(int instrument) {
+        this.instrument = instrument;
+    }
 
     public Major getMajor() {
         return major;

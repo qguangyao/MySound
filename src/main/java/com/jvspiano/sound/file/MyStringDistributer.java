@@ -14,7 +14,11 @@ public interface MyStringDistributer {
         RIGHT_END("rightEnd"),
         LEFT_START("leftStart"),
         LEFT_END("leftEnd"),
-        EXPLANATORY_NOTE("//");
+        EXPLANATORY_NOTE("//"),
+        INSTRUMENT("instrument"),
+        CHANNEL("channel"),
+
+        ;
         public final String value;
 
         Type(String value) {

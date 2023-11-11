@@ -1,5 +1,6 @@
 package com.jvspiano.sound.file;
 
+import com.jvspiano.sound.note.InstrumentEnum;
 import com.jvspiano.sound.note.MyNoteIMPL;
 import com.jvspiano.sound.note.NoteInfo;
 import com.jvspiano.sound.resolver.AppoggiaturaResolverIMPL;
@@ -34,6 +35,7 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
 
     /**
      * 行解析分发方法,以行为单位,分发给相应的解析行为
+     *
      * @param randomAccessFile 读取的文件
      */
     @Override
@@ -68,6 +70,7 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                         try {
                             sequence = new Sequence(Sequence.PPQ, myNoteIMPL.getBaseTick() * 4 / ppq1);
                             track = sequence.createTrack();
+                            setInstrument(track, myNoteIMPL.getInstrument(), myNoteIMPL.getInstrument(), 0);
                         } catch (InvalidMidiDataException e) {
                             throw new RuntimeException(e);
                         }
@@ -76,7 +79,7 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                     System.out.println(line);
                     myNoteIMPL.setBPM(Integer.parseInt(line.replace(Type.BPM.value + COLON, "")));
                     NoteInfo noteInfo = new NoteInfo();
-                    if (myNoteIMPL.isRightStart()){
+                    if (myNoteIMPL.isRightStart()) {
                         noteInfo.originTick = rightTick;
                     } else if (myNoteIMPL.isLeftStart()) {
                         noteInfo.originTick = leftTick;
@@ -96,7 +99,18 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                     myNoteIMPL.setRightStart(false);
                 } else if (line.startsWith(Type.LEFT_END.value)) {
                     myNoteIMPL.setLeftStart(false);
-                } else {
+                } else if (line.startsWith(Type.INSTRUMENT.value)){
+                    line = line.replace(Type.INSTRUMENT.value+COLON,"").replace(Type.CHANNEL.value+COLON,"");
+                    String[] arr = line.split(COLON);
+                    myNoteIMPL.setInstrument(Integer.parseInt(arr[0]));
+                    myNoteIMPL.setChannel(Integer.parseInt(arr[1]));
+                    setInstrument(track, myNoteIMPL.getInstrument(), myNoteIMPL.getChannel(), 0);
+                }
+//                else if (line.startsWith(Type.CHANNEL.value)){
+//                    myNoteIMPL.setChannel(Integer.parseInt(line.replace(Type.CHANNEL.value+COLON,"")));
+//                    setInstrument(track, myNoteIMPL.getInstrument(), myNoteIMPL.getChannel(), 0);
+//                }
+                else {
                     if (myNoteIMPL.isRightStart() && myNoteIMPL.isLeftStart()) {
                         throw new RuntimeException("左右声部不能同时开始");
                     } else if (myNoteIMPL.isRightStart()) {
@@ -133,8 +147,9 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
 
     /**
      * 行分发器判定行为音符时调用此方法,对改行的音符进行解析
-     * @param line 从文件里读出的一行信息
-     * @param lineNum 行号
+     *
+     * @param line      从文件里读出的一行信息
+     * @param lineNum   行号
      * @param lineStart 本行开始的时间tick,相对于整首曲子
      * @return 此行音符的总长度
      */
@@ -159,8 +174,10 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                     noteInfoList.add(noteInfos[0]);
                     noteInfoList.add(noteInfos[1]);
                     try {
-                        addNote(track, noteInfos[0].note, noteInfos[0].volume, myNoteIMPL.getChannel(), noteInfos[0].originTick, noteInfos[0].originTick + noteInfos[0].muteTick);
-                        addNote(track, noteInfos[1].note, noteInfos[1].volume, myNoteIMPL.getChannel(), noteInfos[1].originTick, noteInfos[0].originTick + noteInfos[1].muteTick);
+//                        addNote(track, noteInfos[0].note, noteInfos[0].volume, myNoteIMPL.getChannel(), noteInfos[0].originTick, noteInfos[0].originTick + noteInfos[0].muteTick);
+//                        addNote(track, noteInfos[1].note, noteInfos[1].volume, myNoteIMPL.getChannel(), noteInfos[1].originTick, noteInfos[0].originTick + noteInfos[1].muteTick);
+                        addNote(track, noteInfos[0]);
+                        addNote(track, noteInfos[1]);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -174,9 +191,9 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
                     }
                     noteInfoList.add(noteInfo);
                     try {
-                        addNote(track, noteInfo.note, noteInfo.volume, myNoteIMPL.getChannel(), noteInfo.originTick, noteInfo.originTick + noteInfo.muteTick);
+                        addNote(track, noteInfo);
                     } catch (Exception e) {
-                        System.out.println("异常:"+lineNum);
+                        System.out.println("异常:" + lineNum);
                         throw new RuntimeException(e);
                     }
                 }
@@ -192,31 +209,49 @@ public class MyStringDistributerIMPL implements MyStringDistributer {
 
     /**
      * 添加解析的音符到音轨中
-     * @param track 音轨
-     * @param note 音符
-     * @param volume 音量
-     * @param channel 频道
-     * @param tick 音符的时间位置,相对于整首曲子
-     * @param endTick 该音符的结束位置,相对于整首曲子
+     *
+     * @param track   音轨
+     * @param noteInfo 音符信息
      * @throws Exception 创建音轨发生异常会抛出异常
      */
-    public void addNote(Track track, int note, int volume, int channel, long tick, long endTick) throws Exception {
+    public void addNote(Track track, NoteInfo noteInfo) throws Exception {
         ShortMessage messageOn = new ShortMessage();
-        messageOn.setMessage(ShortMessage.NOTE_ON, channel, note, volume);
-        MidiEvent eventOn = new MidiEvent(messageOn, tick);
+        messageOn.setMessage(ShortMessage.NOTE_ON, noteInfo.channel, noteInfo.note, noteInfo.volume);
+        MidiEvent eventOn = new MidiEvent(messageOn, noteInfo.originTick);
         track.add(eventOn);
         //
         MetaMessage metaMessage = new MetaMessage();
         byte[] data = (messageOn.getData1() + " " + "").getBytes();
         metaMessage.setMessage(127, data, data.length);
-        MidiEvent midiEvent = new MidiEvent(metaMessage, tick);
+        MidiEvent midiEvent = new MidiEvent(metaMessage, noteInfo.originTick);
         track.add(midiEvent);
         //
-        if ((endTick - tick) != myNoteIMPL.getBaseTick() * 4){
+        if (noteInfo.muteTick < noteInfo.noteTick){
             ShortMessage messageOff = new ShortMessage();
-            messageOff.setMessage(ShortMessage.NOTE_OFF, channel, note, volume);
-            MidiEvent eventOff = new MidiEvent(messageOff, endTick);
+            messageOff.setMessage(ShortMessage.NOTE_OFF, noteInfo.channel, noteInfo.note, noteInfo.volume);
+            MidiEvent eventOff = new MidiEvent(messageOff, noteInfo.getMuteTick());
             track.add(eventOff);
+        }else{
+            if (noteInfo.instrument == InstrumentEnum.ACOUSTIC_GRAND_PIANO.value||
+                    noteInfo.instrument == InstrumentEnum.ELECTRIC_GRAND_PIANO.value){
+
+            }else if (noteInfo.instrument == InstrumentEnum.VIOLIN.value){
+                ShortMessage messageOff = new ShortMessage();
+                messageOff.setMessage(ShortMessage.NOTE_OFF, noteInfo.channel, noteInfo.note, noteInfo.volume);
+                MidiEvent eventOff = new MidiEvent(messageOff, noteInfo.getOriginTick() + noteInfo.getMuteTick());
+                track.add(eventOff);
+            }
+        }
+    }
+
+    private void setInstrument(Track track, int instrument, int channel, int tick) {
+        try {
+            ShortMessage messageChangeInstrument = new ShortMessage();
+            messageChangeInstrument.setMessage(ShortMessage.PROGRAM_CHANGE, channel, instrument, 0);
+            MidiEvent eventChangeInstrument = new MidiEvent(messageChangeInstrument, tick);
+            track.add(eventChangeInstrument);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

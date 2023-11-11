@@ -20,6 +20,8 @@ public class SingleNoteResolverIMPL implements SingleNoteResolver {
     public NoteInfo singleNoteResolve(MyNoteIMPL myNoteIMPL , String noteString, int originTick) {
         NoteInfo noteInfo = new NoteInfo();
         noteInfo.originTick = originTick;
+        noteInfo.channel = myNoteIMPL.getChannel();
+        noteInfo.instrument = myNoteIMPL.getInstrument();
         if (noteString == null || noteString.isEmpty()) {
             return null;
         }
@@ -76,7 +78,7 @@ public class SingleNoteResolverIMPL implements SingleNoteResolver {
             noteMuteTick = tick * noteMuteTick / 4;
 //                                noteEndTick = baseTick * 4;
         } else {
-            noteMuteTick = myNoteIMPL.getBaseTick() * 4;
+            noteMuteTick = noteInfo.noteTick;
         }
         noteInfo.muteTick = noteMuteTick;
         noteInfo.volume = volume;

@@ -11,21 +11,21 @@ import javax.sound.midi.*;
  * 教学用视频中用的类
  */
 public class Teach {
-    public static void main(String[] args) throws Exception {
-        //https://www.oracle.com/java/technologies/java-sound-demo.html
-        //4613、572、3572、613
-        int scale = 8;
-        int beat = 4 * scale;
-        int channel = 6;
-        int volume = 100;
-        int tick = 0;
-        int length = beat * 4;
-        MyNoteIMPL myNoteIMPL = new MyNoteIMPL();
-        myNoteIMPL.setMajor(MyNote.Major.D);
-        Sequencer player = MidiSystem.getSequencer();
-        Sequence sequence = new Sequence(Sequence.PPQ, 4 * scale);
-        player.setSequence(sequence);
-        Track track = sequence.createTrack();
+//    public static void main2(String[] args) throws Exception {
+//        //https://www.oracle.com/java/technologies/java-sound-demo.html
+//        //4613、572、3572、613
+//        int scale = 8;
+//        int beat = 4 * scale;
+//        int channel = 6;
+//        int volume = 100;
+//        int tick = 0;
+//        int length = beat;
+//        MyNoteIMPL myNoteIMPL = new MyNoteIMPL();
+//        myNoteIMPL.setMajor(MyNote.Major.D);
+//        Sequencer player = MidiSystem.getSequencer();
+//        Sequence sequence = new Sequence(Sequence.PPQ, 4 * scale);
+//        player.setSequence(sequence);
+//        Track track = sequence.createTrack();
 //        try {
 //            ShortMessage shortMessage = new ShortMessage();
 //            shortMessage.setMessage(ShortMessage.PROGRAM_CHANGE,6,40,0);
@@ -38,149 +38,241 @@ public class Teach {
 //        for (int i = 0; i < 10; i++) {
 //            addNote(track, 6, 60 + i, 100, i * (beat / 2), 4, i * (beat / 2) + 1);
 //        }
-        left(track,channel,myNoteIMPL,volume,tick,beat,length);
-        right(track,channel,myNoteIMPL,volume,tick,beat,length);
+//        left(track,channel,myNoteIMPL,volume,tick,beat,length);
+//        right(track,channel,myNoteIMPL,volume,tick,beat,length);
+//
+//        player.open();
+//        Thread.sleep(100);
+//        player.setTempoInBPM(90);
+//        player.start();
+//
+//    }
+//
+//    private static void right(Track track, int channel, MyNoteIMPL myNoteIMPL, int volume, int tick, int beat, int length) throws Exception{
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getSol(0), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 2, tick + beat / 2 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(1), 0, tick, beat , tick + beat);
+//
+//        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(0), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(1), volume, tick, beat / 4, tick + beat / 4 / 4);
+//        //第七小节
+//    }
+//
+//    public static void left(Track track, int channel, MyNoteIMPL myNoteIMPL, int volume, int tick, int beat, int length) throws Exception{
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
+//        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
+//
+//    }
+//
+//    public static int addNote(Track track, int channel, int note, int volume, int tick, int length, int endTick) throws Exception {
+//        ShortMessage shortMessage = new ShortMessage(ShortMessage.NOTE_ON, channel, note, volume);
+//        MidiEvent midiEvent = new MidiEvent(shortMessage, tick);
+//        track.add(midiEvent);
+//        ShortMessage shortMessage2 = new ShortMessage(ShortMessage.NOTE_OFF, channel, note, volume);
+//        MidiEvent midiEvent2 = new MidiEvent(shortMessage2, endTick);
+//        track.add(midiEvent2);
+//        return length;
+//    }
+//
+//
+//    public static void main4(String[] args) throws Exception{
+//        System.out.println("hello world");
+//        Sequencer sequencer = MidiSystem.getSequencer();
+//        sequencer.setTempoInBPM(90);
+//        Sequence sequence = new Sequence(Sequence.PPQ, 4 );
+//        sequencer.setSequence(sequence);
+//        Track track = sequence.createTrack();
+//        setInstrument(track,40,0,0);
+//        addBend(track,0,0,65,127);
+//        addBend(track,0,0,5,64);
+//        addBend(track,0,0,84,127);
+//        //右手部分
+//        addNote(track,0,60);
+//        addNote(track,8,63);
+//        addNote(track,16,67);
+//        addNote(track,24,67);
+//        addNote(track,32,69);
+////        addNote(track,20,69);
+////        addNote(track,24,67);
+////        addNote(track,32,65);
+////        addNote(track,36,65);
+////        addNote(track,40,64);
+////        addNote(track,44,64);
+////        addNote(track,48,62);
+////        addNote(track,52,62);
+////        addNote(track,56,60);
+////        //此行防止最后一个音不完整,拉长播放时间用
+////        addNote(track,70,0);
+//        //左手部分
+////        addNote(track,0,48);
+////        addNote(track,4,48);
+////        addNote(track,8,48);
+////        addNote(track,12,48);
+////        addNote(track,16,53);
+////        addNote(track,20,53);
+////        addNote(track,24,48);
+////        addNote(track,28,48);
+////        addNote(track,32,43);
+////        addNote(track,36,43);
+////        addNote(track,32,48);
+////        addNote(track,36,48);
+////        addNote(track,40,43);
+////        addNote(track,44,43);
+////        addNote(track,48,48);
+////        addNote(track,52,48);
+//        sequencer.open();
+//        Thread.sleep(100);
+//        sequencer.start();
+//    }
+//
+//
+//    private static void setInstrument(Track track, int instrument, int channel, int tick) {
+//        try {
+//            ShortMessage messageChangeInstrument = new ShortMessage();
+//            messageChangeInstrument.setMessage(ShortMessage.PROGRAM_CHANGE, channel, instrument, 0);
+//            MidiEvent eventChangeInstrument = new MidiEvent(messageChangeInstrument, tick);
+//            track.add(eventChangeInstrument);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    private static void addBend(Track track,int channel,int tick,int data1,int data2) throws Exception{
+//        ShortMessage shortMessage = new ShortMessage(ShortMessage.CONTROL_CHANGE, channel, data1, data2);
+//        MidiEvent midiEvent = new MidiEvent(shortMessage, tick);
+//        track.add(midiEvent);
+//    }
+//
+//    public static void main3(String[] args) throws Exception{
+//        Sequencer sequencer = MidiSystem.getSequencer();
+//        sequencer.setTempoInBPM(90);
+//        Sequence sequence = new Sequence(Sequence.PPQ, 4 );
+//        sequencer.setSequence(sequence);
+//        Track track = sequence.createTrack();
+//        setInstrument(track,40,0,0);
+//        addNote(track,0,60,100,0,4,4);
+//        addBend(track,0,0,65,127);
+//        addBend(track,0,0,5,64);
+//        addNote(track,0,64,100,4,4,8);
+//
+//
+//        System.out.println(track.size());
+//        System.out.println(track.get(track.size()-1));
+//        System.out.println(track.size());
+//        track.remove(track.get(track.size()-1));
+//
+//        sequencer.open();
+//        Thread.sleep(100);
+//        sequencer.start();
+//    }
 
-        player.open();
-        Thread.sleep(100);
-        player.setTempoInBPM(90);
-        player.start();
-
-    }
-
-    private static void right(Track track, int channel, MyNoteIMPL myNoteIMPL, int volume, int tick, int beat, int length) throws Exception{
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-
-        tick += addNote(track, channel, myNoteIMPL.getSol(0), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getMi(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-
-        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 2, tick + beat / 2 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getDo(1), 0, tick, beat , tick + beat);
-
-        tick += addNote(track, channel, 0, 0, tick, beat, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getSol(0), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getDo(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getRe(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        tick += addNote(track, channel, myNoteIMPL.getMi(1), volume, tick, beat / 4, tick + beat / 4 / 4);
-        //第七小节
-    }
-
-    public static void left(Track track, int channel, MyNoteIMPL myNoteIMPL, int volume, int tick, int beat, int length) throws Exception{
-        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getLa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getLa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getMi(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getFa(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getFa(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getSol(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getRe(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-        tick += addNote(track, channel, myNoteIMPL.getDo(-2), volume, tick, beat / 2, tick + length);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getDo(0), volume, tick, beat / 2, tick+ beat / 8);
-        tick += addNote(track, channel, myNoteIMPL.getSol(-1), volume, tick, beat / 2, tick+ beat / 8);
-
-    }
-
-    public static int addNote(Track track, int channel, int note, int volume, int tick, int length, int endTick) throws Exception {
-        ShortMessage shortMessage = new ShortMessage(ShortMessage.NOTE_ON, channel, note, volume);
-        MidiEvent midiEvent = new MidiEvent(shortMessage, tick);
-        track.add(midiEvent);
-        ShortMessage shortMessage2 = new ShortMessage(ShortMessage.NOTE_OFF, channel, note, volume);
-        MidiEvent midiEvent2 = new MidiEvent(shortMessage2, endTick);
-        track.add(midiEvent2);
-        return length;
-    }
-
-
-    public static void main1(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception{
         System.out.println("hello world");
         Sequencer sequencer = MidiSystem.getSequencer();
         sequencer.setTempoInBPM(90);
@@ -189,10 +281,10 @@ public class Teach {
         Track track = sequence.createTrack();
         //右手部分
         addNote(track,0,60);
-        addNote(track,4,60);
-        addNote(track,8,67);
-        addNote(track,12,67);
-        addNote(track,16,69);
+        addNote(track,8,63);
+        addNote(track,16,67);
+        addNote(track,24,67);
+        addNote(track,32,69);
         addNote(track,20,69);
         addNote(track,24,67);
         addNote(track,32,65);
@@ -204,7 +296,7 @@ public class Teach {
         addNote(track,56,60);
         //此行防止最后一个音不完整,拉长播放时间用
         addNote(track,70,0);
-        //左手部分
+//        左手部分
         addNote(track,0,48);
         addNote(track,4,48);
         addNote(track,8,48);
@@ -225,10 +317,14 @@ public class Teach {
         Thread.sleep(100);
         sequencer.start();
     }
+
     private static void addNote(Track track,int tick,int data1) throws Exception{
         ShortMessage shortMessage = new ShortMessage(ShortMessage.NOTE_ON,0,data1,100);
         MidiEvent midiEvent = new MidiEvent(shortMessage,tick);
         track.add(midiEvent);
+        ShortMessage shortMessage1 = new ShortMessage(ShortMessage.NOTE_OFF,0,data1,100);
+        MidiEvent midiEvent1 = new MidiEvent(shortMessage1,tick+4);
+        track.add(midiEvent1);
     }
 
 }

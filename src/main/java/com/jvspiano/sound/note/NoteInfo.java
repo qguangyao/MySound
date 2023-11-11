@@ -10,11 +10,11 @@ public class NoteInfo implements Comparable<NoteInfo> {
      */
     public int note = -1;
     /**
-     * 音符长短
+     * 音符长度
      */
     public int noteTick = 0;
     /**
-     * 音符从@originTick开始后经过@muteTick个节拍静音
+     * 音符从 @originTick开始后经过 @muteTick个节拍静音
      */
     public int muteTick = 0;
     /**
@@ -30,6 +30,14 @@ public class NoteInfo implements Comparable<NoteInfo> {
      * @return
      */
     public int bpm = -1;
+    /**
+     * 在哪个频道
+     */
+    public int channel = 0;
+    /**
+     * 乐器，
+     */
+    public int instrument = 0;
 
     public int getNoteLength() {
         if (muteTick == 0) {
